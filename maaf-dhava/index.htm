@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maafin Aku, Sayang ❤️</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .float-heart{position:absolute;opacity:.2;animation:float 12s linear infinite}
+    @keyframes float{
+      0%{transform:translateY(0) translateX(0) scale(1)}
+      100%{transform:translateY(-120vh) translateX(20vw) scale(1.4)}
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-pink-50 via-rose-50 to-white text-slate-800 selection:bg-pink-200">
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 overflow-hidden">
+    <div class="float-heart text-5xl left-[5%] bottom-[-10%]">❤️</div>
+    <div class="float-heart text-6xl left-[20%] bottom-[-15%] animation-delay-500">💗</div>
+    <div class="float-heart text-4xl left-[35%] bottom-[-12%] animation-delay-[1200ms]">💕</div>
+    <div class="float-heart text-7xl left-[55%] bottom-[-18%] animation-delay-[800ms]">💖</div>
+    <div class="float-heart text-5xl left-[75%] bottom-[-14%] animation-delay-[1600ms]">💞</div>
+    <div class="float-heart text-6xl left-[88%] bottom-[-20%] animation-delay-[2200ms]">💓</div>
+  </div>
+
+  <main class="relative z-10 max-w-xl mx-auto px-5 py-12">
+    <section class="rounded-3xl bg-white/80 backdrop-blur border border-rose-100 shadow-xl p-6 sm:p-8">
+      <div class="text-center space-y-4">
+        <p class="text-xs tracking-widest text-rose-400 uppercase">pesan penting</p>
+        <h1 class="text-3xl sm:text-4xl font-bold leading-tight">
+          Maafin aku yaaa, <span id="nama"></span> 
+        </h1>
+        <p class="text-sm text-slate-500">Dari: <span id="dari">Dhava</span></p>
+      </div>
+
+      <div class="mt-6 space-y-4 text-lg leading-relaxed">
+        <p>
+          Aku sadar aku <span class="bg-yellow-100 px-1 rounded">kegocep/kurang peka</span> di momen tadi.
+          Aku nggak nyari alasan—aku salah, dan aku bener-bener minta maaf.
+        </p>
+        <p>
+          Kamu itu rumahku. Aku nggak mau bikin kamu ngerasa sendiri lagi, apalagi kecewa.
+        </p>
+        <p>
+          Boleh kasih aku satu kesempatan buat benerin? Aku janji bakal:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Ngabarin lebih jelas & on time.</li>
+          <li>Ngedengerin dulu sebelum ngejawab.</li>
+          <li>Ngejaga perasaan kamu, bukan egoku.</li>
+        </ul>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="rounded-2xl border bg-rose-50/60 p-4 text-center">
+          <p class="text-2xl">⏱️</p>
+          <p class="text-sm mt-1">Respons cepat</p>
+        </div>
+        <div class="rounded-2xl border bg-rose-50/60 p-4 text-center">
+          <p class="text-2xl">🤝</p>
+          <p class="text-sm mt-1">Dengerin dulu</p>
+        </div>
+        <div class="rounded-2xl border bg-rose-50/60 p-4 text-center">
+          <p class="text-2xl">🫶</p>
+          <p class="text-sm mt-1">Jaga perasaan</p>
+        </div>
+      </div>
+
+      <div class="mt-7 flex flex-col sm:flex-row items-center gap-3">
+        <button id="btnMaafin" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold bg-rose-500 text-white hover:bg-rose-600 active:scale-[.99] transition">
+          Maafin aku 🙏
+        </button>
+        <a id="waBtn" target="_blank"
+           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-semibold border border-slate-200 hover:bg-slate-50 transition"
+           href="#">
+          <span>Chat di WhatsApp</span> <span>💬</span>
+        </a>
+        <button id="btnEdit" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold border border-slate-200 hover:bg-slate-50 transition">
+          Edit Nama & Dari ✏️
+        </button>
+      </div>
+
+      <p class="mt-5 text-center text-sm text-slate-500">
+        *Kalau kamu siap, aku pengen ketemu dan dengerin semuanya. Aku sayang kamu. 🫶
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const qs = (s)=>document.querySelector(s);
+    const namaEl = qs("#nama");
+    const dariEl = qs("#dari");
+    const btnEdit = qs("#btnEdit");
+    const btn = qs("#btnMaafin");
+    const waBtn = qs("#waBtn");
+
+    const nomor = "6281412141422"; // nomor kamu (pakai format internasional)
+
+    function setWaLink(){
+      const nama = namaEl.textContent.trim();
+      const dari = dariEl.textContent.trim();
+      const msg = `Hai ${nama} ❤️\nAku minta maaf ya. Aku salah.\nBoleh kasih aku kesempatan buat benerin? – ${dari}`;
+      waBtn.href = `https://wa.me/${nomor}?text=${encodeURIComponent(msg)}`;
+    }
+    setWaLink();
+
+    btnEdit.addEventListener("click", () => {
+      const n = prompt("Nama panggilan pasangan kamu?", namaEl.textContent.trim()) || "Sayang";
+      const d = prompt("Nama kamu?", dariEl.textContent.trim()) || "Aku";
+      namaEl.textContent = n;
+      dariEl.textContent = d;
+      setWaLink();
+    });
+
+    btn.addEventListener("click", () => {
+      confetti();
+      btn.disabled = true;
+      btn.textContent = "Makasih udah maafin 🥹";
+      setTimeout(()=>{ btn.disabled=false; btn.textContent="Maafin aku 🙏"; }, 5000);
+    });
+
+    function confetti(){
+      for(let i=0;i<80;i++){
+        const c=document.createElement("span");
+        c.textContent = ["✨","💖","💞","💓","💗","💘"][Math.floor(Math.random()*6)];
+        c.style.position="fixed";
+        c.style.left=(Math.random()*100)+"vw";
+        c.style.top="-10vh";
+        c.style.fontSize=(16+Math.random()*24)+"px";
+        c.style.transition="transform 1.2s ease-out, opacity 1.2s";
+        document.body.appendChild(c);
+        requestAnimationFrame(()=>{
+          c.style.transform=`translateY(${110+Math.random()*30}vh) rotate(${(Math.random()*160-80)}deg)`;
+          c.style.opacity="0";
+        });
+        setTimeout(()=>c.remove(),1300);
+      }
+    }
+  </script>
+</body>
+</html>
